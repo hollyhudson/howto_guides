@@ -56,7 +56,7 @@ First off, the info you enter will be associated with your public key as metadat
 
 _NOTE: This is your only chance to get an off-card copy of your private key.  If you want to do this, you have to say yes NOW.  You won't get another chance._
 
-This one is really going to be personal preference.  If you decide to create an off-card back up you'll be prompted for a passphrase, and that passphrase will be required to actually use that exported key (but not the one still on the card), so it's not like the exported private key will just be sitting there completely exposed to anyone who gains entry to your system -- they would still have to know your passphrase.  But of course your passphrase would need to be long and complex enough to not be crackable.  And you would want to be sure there are no keyloggers installed on your machine that could capture your passphrase.  Right.. this is probably why we wanted to put this thing on hardware in the first place -- because it keeps off a machine that is always connected to the internet onto a device that you, presumable, have more control over.  But, you know, do what's right for your threat model.
+This one is really going to be personal preference.  If you decide to create an off-card back up you'll be prompted for a passphrase, and that passphrase will be required to actually use that exported key (but not the one still on the card), so it's not like the exported private key will just be sitting there completely exposed to anyone who gains entry to your system -- they would still have to know your passphrase.  But of course your passphrase would need to be long and complex enough to not be crackable.  And you would want to be sure there are no keyloggers installed on your machine that could capture your passphrase.  Right.. this is probably why we wanted to put this thing on hardware in the first place -- because it keeps off a machine that is always connected to the internet onto a device that you, presumably, have more control over.  But, you know, do what's right for your threat model.
 
 ### Expiration
 
@@ -76,11 +76,11 @@ If you do want to use this key pair for encrypting communications, then you have
 
 - If you want others to easily find you and your key (for instance if you are a journalist), make this information as accurate as possible, and maybe add a comment that provides more contact info or ways of verifying your key.  And while you're at it, if you have an email that you use with a mail client that makes decrypting PGP easy, you probably want to use that email address.
 
-- If you don't like the fact that having a key on a keyserver and the key signing that it facilitates helps others discern your social graph, or if you're only using it to communicate secretly with people you can exchange keys directly with, feel free to put whatever.
+- If you don't like the fact that having a key on a keyserver and the key signing that it facilitates helps others discern your social graph, or if you're only using it to communicate secretly with people you can exchange keys directly with, then you're probably not using the keyserver anyway so feel free to put whatever.  
 
 ## Confirmation and writing
 
-The last question just asks you to confirm your choices, and then the card start generating and writing the key.  This takes a while, but you'll know the Yubikey is still working because it will be flashing its LED.   Do some knitting or read some XKCD while you wait.
+The last question just asks you to confirm your choices, and then the card starts generating and writing the key.  This takes a while, but you'll know the Yubikey is still working because it will be flashing its LED.   Do some knitting or read some XKCD while you wait.
 
 Ok, now you have keys!  ..probably.. let's make sure:
 
@@ -120,7 +120,7 @@ Now you should be able to list your keys with:
 ssh-add -l
 ```
 
-If you see the key you just created (`cardno:` should be followed by the number printed on the back of your Yubikey), then everything worked.  We can now export the public key and copy wherever we need it.  Important point:  you can only export the key ONCE.  So.. make copies, back them up, whatever you need to do.
+If you see the key you just created (`cardno:` should be followed by the number printed on the back of your Yubikey), then everything worked.  We can now export the public key and copy it wherever we need it.  
 
 Ok, remember when I told to you take note of your key ID?  We're going to use it now (don't type the brackets):
 
@@ -142,5 +142,6 @@ ykman openpgp touch sig on
 ykman openpgp touch enc on
 ```
 
-That's it!  Well almost.  There are some files in your `.gnupg` directory that are necessary to tell the gpg tools where to find your key.  (Confession time: I don't actually know _which_ files those are, I just know they're in there.)  This means that if your computer dies or you sometimes work from a second machine, the yubikey is not going to "just work" unless you've have a copy of your `.gnupg` file on the other machine.  And you should probably keep a back-up of it somewhere off of your main machine in case that computer dies.
+That's it!  Well almost.  There are some files in your `.gnupg` directory that are necessary to tell the gpg tools where to find your key.  (Confession time: I don't actually know _which_ files those are, I just know they're in there.)  This means that if your computer dies or you sometimes work from a second machine, the yubikey is not going to "just work" unless you've have a copy of your `.gnupg` directory on the other machine.  And you should probably keep a back-up of it somewhere off of your main machine in case that computer dies.
 
+If you have suggestions for something I should add or change, make an issue or send a pull request :)
