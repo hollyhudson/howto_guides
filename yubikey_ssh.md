@@ -46,7 +46,7 @@ gpg/card> passwd
 
 Follow the prompts and menus to make the changes.  Don't rush.. read the dialogs.  Sometimes they want the admin PIN, sometimes they want the user PIN.
 
-Now we're ready to generate a key.  If you want to make a key larger than 2048 bits (so if you want to make one that is 4096 bits) run `key-attr` to edit the key attributes.  Select RSA for each (OpenPGP won't work with ECC) and type the key size you want (4096 is a reasonable choice).
+Now we're ready to generate a key.  If you want to make a key larger than 2048 bits (so if you want to make one that is 4096 bits) run `key-attr` to edit the key attributes.  Select RSA for each (ECC won't work on the Yubikey) and type the key size you want (4096 is a reasonable choice).
 
 Now you can actually generate the key by running `generate`.  You're going to get a bunch of questions that are going to seem weird if you haven't done pgp stuff recently.  GPG Suite assumes you're generating these keys to encrypt your files and communications, so these questions are to fill out the data that gets sent to the key server if you upload your public key.  If you're just using this key pair for ssh and github, none of the answers you put matter.  If you're think -- well hey, maybe I will also use this for email, then here's what you need to know.
 
@@ -56,7 +56,7 @@ The info you enter will be associated with your public key as metadata.  It won'
 
 _NOTE: This is your only chance to get an off-card copy of your private key.  If you want to do this, you have to say yes NOW.  You won't get another chance._
 
-This one is really going to be personal preference.  If you decide to create an off-card back up you'll be prompted for a passphrase, and that passphrase will be required to actually use the key, so it's not like the private key will just be sitting there completely exposed to anyone who gains entry to your system -- they would still have to know your passphrase.  But of course your passphrase would need to be long and complex enough to not be crackable.  And you would want to be sure there are no keyloggers installed on your machine that could capture your passphrase.  Right.. this is probably why we wanted to put this thing on hardware in the first place -- because it keeps off a machine that is always connected to the internet onto a device that you, presumable, have more control over.  But, you know, do what's right for your threat model.
+This one is really going to be personal preference.  If you decide to create an off-card back up you'll be prompted for a passphrase, and that passphrase will be required to actually use that exported key (but not the one still on the card), so it's not like the exported private key will just be sitting there completely exposed to anyone who gains entry to your system -- they would still have to know your passphrase.  But of course your passphrase would need to be long and complex enough to not be crackable.  And you would want to be sure there are no keyloggers installed on your machine that could capture your passphrase.  Right.. this is probably why we wanted to put this thing on hardware in the first place -- because it keeps off a machine that is always connected to the internet onto a device that you, presumable, have more control over.  But, you know, do what's right for your threat model.
 
 ### Expiration
 
@@ -120,7 +120,7 @@ Now you should be able to list your keys with:
 ssh-add -l
 ```
 
-If you see the key you just created, then everything worked.  We can now export the public key and copy wherever we need it.  Important point:  you can only export the key ONCE.  So.. make copies, back them up, whatever you need to do.  
+If you see the key you just created (`cardno:` should be followed by the number printed on the back of your Yubikey), then everything worked.  We can now export the public key and copy wherever we need it.  Important point:  you can only export the key ONCE.  So.. make copies, back them up, whatever you need to do.
 
 Ok, remember when I told to you take note of your key ID?  We're going to use it now (don't type the brackets):
 
