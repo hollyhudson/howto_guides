@@ -50,7 +50,7 @@ Now we're ready to generate a key.  If you want to make a key larger than 2048 b
 
 Now you can actually generate the key by running `generate`.  You're going to get a bunch of questions that are going to seem weird if you haven't done pgp stuff recently.  GPG Suite assumes you're generating these keys to encrypt your files and communications, so these questions are to fill out the data that gets sent to the key server if you upload your public key.  If you're just using this key pair for ssh and github, none of the answers you put matter.  If you're think -- well hey, maybe I will also use this for email, then here's what you need to know.
 
-The info you enter will be associated with your public key as metadata.  It won't affect the keys themselves in any way, and will only go public if you upload your public key to a keyserver.
+First off, the info you enter will be associated with your public key as metadata.  It won't affect the keys themselves in any way, and will only go public if you upload your public key to a keyserver.  And now for the questions:
 
 ### Off-card back up
 
